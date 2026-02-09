@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+python-chess
+sqlalchemy
+pydantic
+pytest
+httpx
+python-multipart
