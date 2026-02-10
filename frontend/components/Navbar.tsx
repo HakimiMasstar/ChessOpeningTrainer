@@ -18,7 +18,8 @@ export default function Navbar() {
             <div className="w-8 h-8 bg-slate-900 text-white flex items-center justify-center rounded-lg font-bold text-xl group-hover:bg-slate-700 transition-colors">
                 ♔
             </div>
-            <span className="font-bold text-slate-800 text-lg tracking-tight">ChessOpeningTrainer</span>
+            <span className="font-bold text-slate-800 text-lg tracking-tight hidden sm:block">ChessOpeningTrainer</span>
+            <span className="font-bold text-slate-800 text-lg tracking-tight sm:hidden">COT</span>
         </Link>
         
         <div className="flex gap-1 bg-slate-100/50 p-1 rounded-xl">
@@ -28,14 +29,14 @@ export default function Navbar() {
                 <Link
                 key={nav.name}
                 href={nav.href}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                     isActive 
                     ? "bg-white text-slate-900 shadow-sm ring-1 ring-slate-200" 
                     : "text-slate-500 hover:text-slate-700 hover:bg-slate-200/50"
                 }`}
                 >
                 {nav.icon}
-                {nav.name}
+                <span className="hidden xs:block">{nav.name}</span>
                 </Link>
             );
           })}

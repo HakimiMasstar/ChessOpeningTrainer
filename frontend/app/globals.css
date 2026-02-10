@@ -3,6 +3,7 @@
 @theme {
   --color-background: #ffffff;
   --color-foreground: #0f172a;
+  --breakpoint-xs: 400px;
 }
 
 body {

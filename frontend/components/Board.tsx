@@ -76,6 +76,16 @@ export default function Board({
     }
   }, [fen, movable, onMove, viewOnly, orientation, turnColor, check, lastMove]);
 
+  useEffect(() => {
+    const handleResize = () => {
+        if (api.current) {
+            api.current.redrawAll();
+        }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div 
         ref={ref} 

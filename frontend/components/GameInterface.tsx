@@ -157,22 +157,22 @@ const GameInterface: React.FC = () => {
         
         {/* Header / Controls */}
         {!gameStarted && (
-            <div className="text-center p-8 bg-white border rounded shadow-lg">
-                <h2 className="text-2xl font-bold mb-4">Chess Opening Trainer</h2>
-                <div className="flex gap-4 justify-center">
+            <div className="text-center p-6 sm:p-8 bg-white border rounded shadow-lg w-full max-w-md">
+                <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Chess Opening Trainer</h2>
+                <div className="flex flex-col xs:flex-row gap-4 justify-center">
                     <button 
                         onClick={() => handleStart("white")}
-                        className="px-6 py-3 bg-slate-100 text-slate-800 border font-bold rounded hover:bg-white hover:shadow-md transition flex flex-col items-center"
+                        className="flex-1 px-4 py-3 bg-slate-100 text-slate-800 border font-bold rounded hover:bg-white hover:shadow-md transition flex flex-col items-center"
                     >
                         <span className="text-2xl">♔</span>
-                        Play as White
+                        <span className="text-sm sm:text-base">Play as White</span>
                     </button>
                     <button 
                         onClick={() => handleStart("black")}
-                        className="px-6 py-3 bg-slate-800 text-white font-bold rounded hover:bg-slate-900 hover:shadow-md transition flex flex-col items-center"
+                        className="flex-1 px-4 py-3 bg-slate-800 text-white font-bold rounded hover:bg-slate-900 hover:shadow-md transition flex flex-col items-center"
                     >
                         <span className="text-2xl">♚</span>
-                        Play as Black
+                        <span className="text-sm sm:text-base">Play as Black</span>
                     </button>
                 </div>
             </div>
@@ -180,9 +180,9 @@ const GameInterface: React.FC = () => {
 
         {/* Game Area */}
         {gameStarted && (
-            <div className="flex flex-col lg:flex-row gap-6 w-full justify-center">
-                {/* Left: Opening Tracker */}
-                <div className="w-full lg:w-56 flex flex-col gap-2 order-2 lg:order-1">
+            <div className="flex flex-col lg:flex-row gap-6 w-full justify-center items-start">
+                {/* Left: Opening Tracker - Hidden or bottom on mobile? Let's keep it but maybe make it smaller */}
+                <div className="w-full lg:w-56 flex flex-col gap-2 order-3 lg:order-1">
                     <h3 className="font-bold text-slate-700 border-b pb-2 text-xs uppercase tracking-wide">Learning Tracker</h3>
                     <div className="bg-white border rounded-xl h-[200px] lg:h-[550px] overflow-y-auto p-2 space-y-1 shadow-sm">
                         {relevantOpenings.map(op => {
@@ -207,7 +207,7 @@ const GameInterface: React.FC = () => {
 
                 {/* Board */}
                 <div className="w-full lg:w-auto flex-1 max-w-[550px] order-1 lg:order-2">
-                    <div className="w-full h-[550px] bg-slate-300 rounded-xl shadow-lg overflow-hidden relative">
+                    <div className="w-full aspect-square bg-slate-300 rounded-xl shadow-lg overflow-hidden relative">
                         <Board 
                             key={playerColor}
                             fen={fen} 
@@ -228,7 +228,7 @@ const GameInterface: React.FC = () => {
                             <div className="bg-white p-6 rounded-xl shadow-2xl text-center pointer-events-auto transform scale-100 max-w-xs mx-4">
                                 <h3 className="text-xl font-bold text-slate-800 mb-1">Game Over</h3>
                                 <p className="text-sm text-slate-500 mb-6">{status}</p>
-                                <div className="flex gap-3 justify-center">
+                                <div className="flex flex-col xs:flex-row gap-3 justify-center">
                                     <button 
                                         onClick={() => handleStart("white")}
                                         className="px-4 py-2 bg-slate-100 text-slate-800 font-bold text-sm rounded-lg hover:bg-slate-200"
@@ -249,7 +249,7 @@ const GameInterface: React.FC = () => {
                 </div>
 
                 {/* Sidebar */}
-                <div className="w-full lg:w-72 flex flex-col gap-4 order-3">
+                <div className="w-full lg:w-72 flex flex-col gap-4 order-2 lg:order-3">
                     <div className={`p-4 rounded-xl border shadow-sm ${isEngineMode ? 'bg-red-50 border-red-200' : 'bg-green-50 border-green-200'}`}>
                         <div className="flex justify-between items-center mb-1">
                             <h3 className="font-bold text-sm uppercase tracking-wide">{isEngineMode ? "Engine Mode" : "Theory Mode"}</h3>
@@ -258,7 +258,7 @@ const GameInterface: React.FC = () => {
                         <p className="text-slate-700 text-xs leading-relaxed font-medium">{status}</p>
                     </div>
 
-                    <div className="flex-1 bg-white border rounded-xl shadow-sm p-3 h-[300px] lg:h-auto lg:max-h-[420px] overflow-auto flex flex-col">
+                    <div className="bg-white border rounded-xl shadow-sm p-3 h-[250px] lg:h-[400px] overflow-auto flex flex-col">
                         <h4 className="font-bold border-b pb-2 mb-2 text-xs text-slate-500 uppercase tracking-wide">Move History</h4>
                         <div className="grid grid-cols-2 gap-y-0.5 text-xs flex-1 content-start">
                             {history.map((move, i) => (

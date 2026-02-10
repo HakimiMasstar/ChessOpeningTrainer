@@ -5,13 +5,13 @@ export default function LandingPage() {
   return (
     <main className="min-h-screen bg-slate-50">
       {/* Hero Section */}
-      <section className="bg-white border-b border-slate-200 pt-20 pb-32">
+      <section className="bg-white border-b border-slate-200 pt-12 pb-20 sm:pt-20 sm:pb-32">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <div className="inline-flex items-center gap-2 bg-slate-100 text-slate-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-8">
             <span className="w-2 h-2 rounded-full bg-green-500"></span>
             Version 1.0 Now Available
           </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight mb-6">
+          <h1 className="text-4xl xs:text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight mb-6">
             Master Your Openings <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
               One Move at a Time

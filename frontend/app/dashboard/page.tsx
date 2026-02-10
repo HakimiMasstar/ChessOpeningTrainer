@@ -94,14 +94,15 @@ export default function Dashboard() {
                     <button
                         key={color}
                         onClick={() => setActiveTab(color)}
-                        className={`px-6 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-all ${
+                        className={`px-4 sm:px-6 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-all ${
                             activeTab === color 
                             ? "bg-slate-100 text-slate-900 shadow-sm" 
                             : "text-slate-500 hover:text-slate-700"
                         }`}
                     >
                         <span className={`w-2.5 h-2.5 rounded-full border ${color === "white" ? "bg-white border-slate-300" : "bg-slate-900 border-slate-900"}`}></span>
-                        Play as {color.charAt(0).toUpperCase() + color.slice(1)}
+                        <span className="hidden xs:block">Play as {color.charAt(0).toUpperCase() + color.slice(1)}</span>
+                        <span className="xs:hidden">{color.charAt(0).toUpperCase() + color.slice(1)}</span>
                     </button>
                 ))}
             </div>
@@ -115,40 +116,38 @@ export default function Dashboard() {
                 {filteredOpenings.map(op => (
                     <div 
                         key={op.id} 
-                        className={`group relative bg-white rounded-xl p-4 border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${
+                        className={`group relative bg-white rounded-xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${
                             op.is_learned ? "border-green-200 ring-1 ring-green-100" : "border-slate-200"
                         }`}
                     >
-                        <div className="flex justify-between items-start mb-3">
-                            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                                op.is_learned ? "bg-green-100 text-green-600" : "bg-slate-100 text-slate-400"
-                            }`}>
-                                {op.is_learned ? <CheckCircle size={16} /> : <Circle size={16} />}
+                        <Link href={`/learn/${op.id}`} className="block p-4">
+                            <div className="flex justify-between items-start mb-3">
+                                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                                    op.is_learned ? "bg-green-100 text-green-600" : "bg-slate-100 text-slate-400"
+                                }`}>
+                                    {op.is_learned ? <CheckCircle size={16} /> : <Circle size={16} />}
+                                </div>
+                                <div className="text-slate-300 group-hover:text-blue-500 transition-colors">
+                                    <BookOpen size={18} />
+                                </div>
                             </div>
-                            <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <Link 
-                                    href={`/learn/${op.id}`}
-                                    className="p-1.5 bg-slate-50 hover:bg-blue-50 text-slate-400 hover:text-blue-600 rounded-lg"
-                                    title="Study"
-                                >
-                                    <BookOpen size={16} />
-                                </Link>
-                            </div>
+                            
+                            <h3 className="font-bold text-slate-800 text-base mb-0.5 line-clamp-1">{op.name}</h3>
+                            <p className="text-slate-400 text-xs">{op.is_learned ? "Learned" : "Not started"}</p>
+                        </Link>
+                        
+                        <div className="px-4 pb-4">
+                            <button 
+                                onClick={() => handleToggle(op.id)}
+                                className={`w-full py-2 rounded-lg font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 ${
+                                    op.is_learned 
+                                    ? "bg-red-50 text-red-600 hover:bg-red-100" 
+                                    : "bg-slate-900 text-white hover:bg-slate-800"
+                                }`}
+                            >
+                                {op.is_learned ? <><Trash2 size={14}/> Remove</> : <><Plus size={14}/> Mark as Learned</>}
+                            </button>
                         </div>
-                        
-                        <h3 className="font-bold text-slate-800 text-base mb-0.5 line-clamp-1">{op.name}</h3>
-                        <p className="text-slate-400 text-xs mb-4">{op.is_learned ? "Learned" : "Not started"}</p>
-                        
-                        <button 
-                            onClick={() => handleToggle(op.id)}
-                            className={`w-full py-2 rounded-lg font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 ${
-                                op.is_learned 
-                                ? "bg-red-50 text-red-600 hover:bg-red-100" 
-                                : "bg-slate-900 text-white hover:bg-slate-800"
-                            }`}
-                        >
-                            {op.is_learned ? <><Trash2 size={14}/> Remove</> : <><Plus size={14}/> Mark as Learned</>}
-                        </button>
                     </div>
                 ))}
                 
