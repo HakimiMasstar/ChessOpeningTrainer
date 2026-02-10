@@ -49,7 +49,7 @@ export default function Board({
         movable: {
             color: movable?.color || "white",
             free: false,
-            dests: movable?.dests,
+            dests: movable?.dests as any,
             showDests: true, // Show dots for valid moves
             events: {
                 after: (orig, dest) => onMove && onMove(orig, dest),
@@ -67,7 +67,7 @@ export default function Board({
         viewOnly: viewOnly,
         movable: {
             color: movable?.color || "white",
-            dests: movable?.dests,
+            dests: movable?.dests as any,
             events: {
                 after: (orig, dest) => onMove && onMove(orig, dest),
             },
