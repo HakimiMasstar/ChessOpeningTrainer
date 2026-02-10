@@ -18,7 +18,7 @@ app.include_router(debug.router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # React Frontend URL
+    allow_origins=["*"],  # Allows all origins for development and deployment
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
