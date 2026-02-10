@@ -42,7 +42,7 @@ export default function Board({
         orientation: orientation,
         turnColor: turnColor,
         check: check,
-        lastMove: lastMove as [string, string],
+        lastMove: lastMove as any,
         viewOnly: viewOnly,
         coordinates: true,
         animation: { enabled: true, duration: 200 },
@@ -63,7 +63,7 @@ export default function Board({
         fen: fen,
         turnColor: turnColor,
         check: check,
-        lastMove: lastMove as [string, string],
+        lastMove: lastMove as any,
         viewOnly: viewOnly,
         movable: {
             color: movable?.color || "white",
